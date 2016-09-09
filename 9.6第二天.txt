@@ -1,0 +1,10 @@
+1，lsb_relase -a
+    查看系统版本
+	
+2，uname -r
+    查看内核版本
+	
+3，Alt+F2 
+    gnome-terminal
+	
+4，
