@@ -27,7 +27,9 @@ linux磁盘管理
 		[root@stu72 test]# file b
 		b: bzip2 compressed data, block size = 900k	表示bzip2压缩文件
 		[root@stu72 test]# file /tools/VMwareTools-8.4.5-324285.tar.gz 
-		/tools/VMwareTools-8.4.5-324285.tar.gz: gzip compressed data, from Unix, last modified: Fri Nov 12 02:26:36 2010	表示gzip压缩文件		[root@stu72 test]# file 11
+		/tools/VMwareTools-8.4.5-324285.tar.gz: gzip compressed data, from Unix, last modified: Fri Nov 12 02:26:36 2010
+         	表示gzip压缩文件		 
+                [root@stu72 test]# file 11
 		11: ASCII C program text		表示C语言代码文件
 		[root@stu72 test]# echo lkhsafdj > hello 
 		[root@stu72 test]# file hello 
@@ -53,7 +55,7 @@ linux磁盘管理
 		-s	：显示内核
 		-n	：主机名
 		-r	：内核版本
-		-v  : 时戳
+		-v      : 时戳
 		-m	: 平台
 		-o	: 操作系统
 
@@ -102,7 +104,7 @@ linux磁盘管理
 	查找文件：locate 表示从数据库中查找
 		[root@stu72 test]# locate /etc/passwd
 		如果找不到，则需要更新数据库
-			uodatedb
+			updatedb
 	查找文件：find
 		格式： find path option
 		option:
@@ -186,11 +188,11 @@ linux磁盘管理
 	   /dev/sda3            2350        2610     2096482+  82  Linux swap / Solaris
 	/dev/sda : 表示第一张磁盘
 		hd:	IDE接口硬盘
-		sd: ISIC接口硬盘
-		a : 表示第一张硬盘
+		sd:     SATA接口硬盘
+		a :     表示第一张硬盘
 		b :
 		...
-		1 : 表示硬盘第一个分区
+		1 :     表示硬盘第一个分区
 		2 ：
 		....
 	划分硬盘模式：
@@ -199,8 +201,8 @@ linux磁盘管理
 		3 + 1 :
 
 		主分区：
-		扩张分区：
-			逻辑分区
+		扩展分区：
+		逻辑分区
 	1 分区：
 		fdisk /dev/sda
 			m -> n 
@@ -234,7 +236,7 @@ linux磁盘管理
 			ext2
 			ext3
 			ext4	: 表示linux文件系统格式
-			nfs		: 表示linux文件共享格式
+			nfs     : 表示linux文件共享格式
 			MS_DOS	：表示DOS操作系统文件格式 支持短格式
 			vfat	：支持长格式
 			fat16 fat32 fat64	
@@ -274,6 +276,9 @@ linux磁盘管理
 	LABEL=SWAP-sda3    swap           swap    defaults        0 0
 	设备名			挂载点			文件类型  参数            校验位
 
+	列：
+	/liancancai/rhel-server-6.5-x86_64-dvd.iso  /ios  iso9660   default,loop  0 0
+	
 
 	自动挂载生效：
 		mount -a
