@@ -1,0 +1,84 @@
+#!/bin/bash
+
+#Program:
+#    使用gcca 让当前目录下的所有.c自动编译并创建成.out
+
+#History:
+#    2016.09.20    lcc    first release
+
+path=`pwd`
+
+filelist=`ls $path`
+echo "$filelist"  > $path/temp1_ #用于存放所有文件名
+
+find $path -name "*.c" > $path/tmep2_ #用于存放所有.c文件的绝对路径
+
+#先选取一行，然后统计字数，再删除 / ，在统计字数
+#cat tmep2_ | tr ".c" ".out"
+
+path_number1=`head -n 1 $path/tmep2_ | wc -c`
+#echo $path_number1
+
+path_number2=`head -n 1 $path/tmep2_ | tr -d / | wc -c`
+#echo $path_number2
+
+path_number=$[$path_number1 - $path_number2]
+
+#用次方法获取.c文件名
+#filenamec=`head -n 1 $path/tmep2_ | cut -d / -f $[$path_number+1]` 
+#echo "filenamec = $filenamec"
+
+#获取行数 也就是文件数
+line=`wc -l $path/tmep2_ |  cut -d ' '  -f 1`
+#echo "line = $line "
+echo "Cfile number = $line"
+
+head -n $line  $path/tmep2_ | cut -d / -f $[$path_number+1] > $path/temp3_ #存放所有.c文件
+
+cat $path/temp3_ | cut -d . -f 1 > $path/temp4_ #存放所有去掉.c后缀的文件
+
+# head -n number | tail -n 1 读取number行的内容
+
+#读取某一个.c文件
+function read_line_c()
+{
+    head -n $1 $path/temp3_ | tail -n 1
+}
+
+#f=`read_line_c 2`
+#echo $f
+
+#读取某一个去掉.c后缀的文件
+function read_line()
+{
+    head -n $1 $path/temp4_ | tail -n 1
+}
+
+#    filename_c=`read_line_c 1`
+#	echo $filename_c
+#    filename=`read_line 1`
+#	gcc $path/$filename_c -o $filename.out
+
+for ((i = 1; i <= $line ; i ++))
+do
+    filename_c=`read_line_c $i`
+    filename=`read_line $i`
+	gcc $path/$filename_c -o $filename.out
+done
+
+rm $path/temp1_ -f
+rm $path/tmep2_ -f
+rm $path/temp3_ -f
+rm $path/temp4_ -f 
+
+echo "gcc  done"
+#`head -n 12 $path/tmep2_ | cut -d / -f $[$path_number+1]` 
+
+#echo `cat tmep2_ | tr " " "\n" ` >>  $path/temp3_
+
+#echo `cat temp1_ | grep . ` > $path/tmep2_
+
+#echo `grep c $path/tmep2_` > $path/temp3_
+
+
+
